@@ -5,7 +5,6 @@ import lombok.extern.log4j.Log4j2;
 
 @Getter
 @Setter
-@Log4j2
 public class File extends Node{
     private String type;
 
@@ -31,14 +30,19 @@ public class File extends Node{
     }
     private void moveFile(File f, Folder d){
 
-        if (d != null){
-            //remove from old folder
-            Folder parentFolder =  f.getParentFolder();
-            parentFolder.getChildren().remove(f);
+        if (d != null){ //check valid destination, do nothing
+            System.out.println("Invalid destination folder");
+            if (!f.getParentFolder().equals(d)){ //check if parents are same, to avoid unnecessary processing
+                //remove from old folder
+                Folder parentFolder =  f.getParentFolder();
+                parentFolder.getChildren().remove(f);
 
-            //add to list of children of new parent, change current parent
-            f.setParentFolder(d);
-            d.getChildren().add(f);
+                //add to list of children of new parent, change current parent
+                f.setParentFolder(d);
+                d.getChildren().add(f);
+            }
+            else { System.out.println("File already exists in destination folder. "); }
+
         }
 
 

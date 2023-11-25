@@ -1,7 +1,7 @@
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+        import lombok.Getter;
+        import lombok.NonNull;
+        import lombok.Setter;
 
 
 @Getter
@@ -9,8 +9,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Node {
     //Node cannot exist without following details
-   @NonNull
-   private String name;
+    @NonNull
+    private String name;
     @NonNull
     private Folder parentFolder;
     @NonNull
