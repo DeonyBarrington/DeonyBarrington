@@ -1,21 +1,45 @@
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
 
-public class File {
+@Getter
+@Setter
+public class File extends Node{
     private String type;
 
+    //file cannot exist without all the details - parent folder cannot be null for file nodes
+    public File(@NonNull String name, @NonNull Folder parentFolder, @NonNull String doe, @NonNull String type) {
+        super(name, parentFolder, doe);
+        this.type = type;
+    }
+
     private void createFile(File f){
-        //set parent
+        //add f to parent folder list - assumption is that files cannot exist without parent folder
+        Folder parentFolder = f.getParentFolder();
+        parentFolder.getChildren().add(f);
+
     }
 
     private void deleteFile(File f){
         //remove from parent folder list
+        Folder parentFolder = f.getParentFolder();
+        parentFolder.getChildren().remove(f);
+
 
     }
     private void moveFile(File f, Folder d){
-        //add to new parent
-        //remove from old parent
+
+        if (d != null){
+            //remove from old folder
+            Folder parentFolder =  f.getParentFolder();
+            parentFolder.getChildren().remove(f);
+
+            //add to list of children of new parent, change current parent
+            f.setParentFolder(d);
+            d.getChildren().add(f);
+        }
+        log("Error, destination folder is null")
+
     }
 
 }

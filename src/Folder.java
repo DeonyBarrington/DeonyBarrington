@@ -1,8 +1,19 @@
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
+
 import java.util.HashSet;
 import java.util.Set;
 
-public class Folder {
-    Set<String> children = new HashSet<>();
+@Getter
+@Setter
+public class Folder extends Node {
+    Set<Node> children = new HashSet<>();
+
+//    folder cannot exist without all the details, children are optional, parent can be null (if its root folder)
+    public Folder(@NonNull String name, Folder parentFolder, @NonNull String doe) {
+        super(name, parentFolder, doe);
+    }
 
     private void createFolder(Folder f){
         //set node level values
