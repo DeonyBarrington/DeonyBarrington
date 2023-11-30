@@ -1,7 +1,6 @@
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
-import lombok.extern.log4j.Log4j2;
 
 @Getter
 @Setter
