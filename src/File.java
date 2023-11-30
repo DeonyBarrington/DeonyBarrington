@@ -1,9 +1,11 @@
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 
 @Getter
 @Setter
+@Log4j2
 public class File extends Node{
     private String type;
 
@@ -38,7 +40,7 @@ public class File extends Node{
             f.setParentFolder(d);
             d.getChildren().add(f);
         }
-        log("Error, destination folder is null")
+
 
     }
 
