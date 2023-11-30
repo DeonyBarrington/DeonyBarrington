@@ -26,7 +26,7 @@ public class Folder extends Node {
         parentFolder.getChildren().remove(f);
 
         //delete all children
-        f.getChildren();
+
     }
 
     private void moveFolder(Folder f, Folder d){
