@@ -16,13 +16,19 @@ public class Folder extends Node {
     }
 
     private void createFolder(Folder f){
-        //set node level values
-        //assumes root level folder exists already
+        Folder parentFolder = f.getParentFolder();
+        parentFolder.getChildren().add(f);
     }
+
     private void deleteFolder(Folder f){
         //removes from parent node
+        Folder parentFolder = f.getParentFolder();
+        parentFolder.getChildren().remove(f);
 
+        //delete all children
+        f.getChildren();
     }
+
     private void moveFolder(Folder f, Folder d){
         //validation required
         //update parent node
