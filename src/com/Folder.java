@@ -1,7 +1,10 @@
+package com;
+
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,16 +14,16 @@ public class Folder extends Node {
     private Set<Node> children = new HashSet<>();
 
     //    folder cannot exist without all the details, children are optional, parent can be null (if its root folder)
-    public Folder(@NonNull String name, Folder parentFolder, @NonNull String doe) {
+    public Folder(@NonNull String name, Folder parentFolder, @NonNull LocalDateTime doe) {
         super(name, parentFolder, doe);
     }
 
-    private void createFolder(Folder f) {
+    public static void createFolder(Folder f) {
         Folder parentFolder = f.getParentFolder();
         parentFolder.getChildren().add(f);
     }
 
-    private void deleteFolder(Folder f) {
+    public static void deleteFolder(Folder f) {
         //removes from parent node
         Folder parentFolder = f.getParentFolder();
         parentFolder.getChildren().remove(f);
@@ -29,7 +32,7 @@ public class Folder extends Node {
         f.setChildren(null);
     }
 
-    private void moveFolder(Folder f, Folder d) {
+    public static void moveFolder(Folder f, Folder d) {
 
         if (d != null) { //check valid destination, do nothing
             System.out.println("Invalid destination folder");
