@@ -18,9 +18,13 @@ public class File extends Node {
     }
 
     public static void createFile(File f) {
-        // add f to parent folder list - assumption is that files cannot exist without parent folder
+
         Folder parentFolder = f.getParentFolder();
-        parentFolder.getChildren().add(f);
+
+        if (parentFolder != null){
+            parentFolder.getChildren().add(f);
+        }
+        // else it is a root folder and do nothing (children won't exist yet)
     }
 
     public static void deleteFile(File f) {

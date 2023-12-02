@@ -30,8 +30,10 @@ public class Folder extends Node {
         Folder parentFolder = f.getParentFolder();
         if (parentFolder != null) {
             parentFolder.getChildren().remove(f);
-
             // delete all children - assumption: if the folder is deleted, all children will be lost
+            f.setChildren(null);
+        }
+        else{
             f.setChildren(null);
         }
     }

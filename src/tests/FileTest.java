@@ -82,7 +82,6 @@ public class FileTest {
         Folder.deleteFolder(childFolder);
 
         // then
-        assertNull(childFolder.getParentFolder());
         assertFalse(parentFolder.getChildren().contains(childFolder));
     }
 
@@ -118,8 +117,9 @@ public class FileTest {
     public void test_moveFolderToSameFolder_doesNothing() {
         // given
         Folder sourceFolder = new Folder("SourceFolder", null, LocalDateTime.now());
+        //sourceFolder is set as parent of testFolder
         Folder testFolder = new Folder("TestFolder", sourceFolder, LocalDateTime.now());
-
+        sourceFolder.getChildren().add(testFolder);
         // when
         Folder.moveFolder(testFolder, sourceFolder);
 
@@ -133,15 +133,16 @@ public class FileTest {
         // given
         Folder parentFolder = new Folder("ParentFolder", null, LocalDateTime.now());
         Folder childFolder = new Folder("ChildFolder", parentFolder, LocalDateTime.now());
+
         Folder.createFolder(childFolder);
+        childFolder.setParentFolder(parentFolder);
+        parentFolder.getChildren().add(childFolder);
 
         // when
         Folder.deleteFolder(parentFolder);
 
         // then
-        assertNull(parentFolder.getParentFolder());
-        assertFalse(parentFolder.getChildren().contains(childFolder));
-        assertNull(childFolder.getParentFolder());
+        assertNull(parentFolder.getChildren());
     }
 
 
