@@ -112,7 +112,6 @@ public class FileTest {
 
         // then
         assertNull(newFile.getParentFolder());
-        assertTrue(newFile.getParentFolder() == null); // alternative assertion
     }
 
     @Test
