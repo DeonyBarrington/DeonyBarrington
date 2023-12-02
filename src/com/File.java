@@ -12,7 +12,7 @@ public class File extends Node {
     private String type;
 
     // file cannot exist without all the details - parent folder cannot be null for file nodes
-    public File(@NonNull String name, Folder parentFolder, @NonNull LocalDateTime doe, @NonNull String type) {
+    public File(@NonNull String name, @NonNull Folder parentFolder, @NonNull LocalDateTime doe, @NonNull String type) {
         super(name, parentFolder, doe);
         this.type = type;
     }
